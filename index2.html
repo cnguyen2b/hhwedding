@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>H&H Weddings — Vietnamese & English Floral Design & Coordination</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;1,300&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fdf6ee;
+      --blush: #f2ddd5;
+      --rose: #c9897a;
+      --gold: #c9a96e;
+      --gold-light: #e8d5a3;
+      --gold-dark: #9a7a3f;
+      --charcoal: #2c2420;
+      --warm-white: #fefaf5;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* LANGUAGE TOGGLE */
+    .lang-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: flex-end;
+      padding: 10px 32px;
+      background: rgba(253,246,238,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+    .lang-toggle { display: flex; border: 1px solid var(--gold); border-radius: 20px; overflow: hidden; }
+    .lang-btn {
+      padding: 5px 16px;
+      font-family: 'Quicksand', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.08em; cursor: pointer; border: none;
+      background: transparent; color: var(--gold-dark); transition: all 0.3s;
+    }
+    .lang-btn.active { background: var(--gold); color: var(--warm-white); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 41px; left: 0; right: 0; z-index: 99;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 48px;
+      background: rgba(253,246,238,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300;
+      letter-spacing: 0.15em; color: var(--charcoal); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--charcoal); text-decoration: none;
+      transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 10px 24px; background: transparent; border: 1px solid var(--gold);
+      color: var(--gold-dark); font-family: 'Quicksand', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--warm-white); }
+
+    /* BILINGUAL LOGIC */
+    .vi-text { display: none; }
+    .vi-inline { display: none; }
+    body.vi .en-text { display: none; }
+    body.vi .vi-text { display: block; }
+    body.vi .en-inline { display: none; }
+    body.vi .vi-inline { display: inline; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; padding-top: 100px;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 60px 80px 80px;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6vw, 82px); font-weight: 300;
+      line-height: 1.08; color: var(--charcoal); margin-bottom: 12px;
+    }
+    .hero-title em { font-style: italic; color: var(--rose); }
+    .hero-subtitle-vi {
+      font-family: 'Noto Serif', serif; font-size: 18px; font-weight: 300;
+      font-style: italic; color: var(--gold-dark); margin-bottom: 32px;
+    }
+    .hero-desc {
+      font-size: 15px; font-weight: 300; line-height: 1.85;
+      color: #6b5a52; max-width: 420px; margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; gap: 16px; }
+    .btn-primary {
+      padding: 16px 36px; background: var(--gold); color: var(--warm-white);
+      font-family: 'Quicksand', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; border: none;
+      cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      padding: 16px 36px; background: transparent; color: var(--charcoal);
+      font-family: 'Quicksand', sans-serif; font-size: 12px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid rgba(44,36,32,0.25); cursor: pointer;
+      text-decoration: none; display: inline-block; transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-collage {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+    }
+    .hero-collage-item { overflow: hidden; }
+    .hero-collage-item:nth-child(3) { grid-column: span 2; }
+    .hero-collage-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+    .hero-collage-item:hover img { transform: scale(1.04); }
+    .hero-overlay {
+      position: absolute; bottom: 40px; left: -30px;
+      background: rgba(253,246,238,0.96); padding: 20px 28px;
+      border-left: 3px solid var(--gold);
+    }
+    .hero-overlay-stat { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--gold-dark); line-height: 1; }
+    .hero-overlay-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #8a7060; margin-top: 4px; }
+
+    /* DIVIDER */
+    .divider {
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      padding: 60px 48px 0; color: var(--gold);
+      font-family: 'Cormorant Garamond', serif; font-size: 22px;
+    }
+    .divider-line { flex: 1; max-width: 200px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+
+    /* STORY */
+    .story { padding: 80px 80px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .story-images { position: relative; height: 560px; }
+    .story-img-main { position: absolute; top: 0; left: 0; width: 72%; height: 80%; background: var(--blush); overflow: hidden; }
+    .story-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .story-img-accent {
+      position: absolute; bottom: 0; right: 0; width: 55%; height: 48%;
+      background: var(--cream); border: 3px solid var(--warm-white); overflow: hidden;
+      box-shadow: 0 8px 40px rgba(44,36,32,0.12);
+    }
+    .story-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, var(--blush), var(--gold-light));
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: var(--gold-dark);
+    }
+    .photo-ph span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; }
+    .story-badge {
+      position: absolute; top: 50%; left: 64%; transform: translate(-50%, -50%);
+      width: 90px; height: 90px; background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      color: var(--warm-white); font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; font-style: italic; text-align: center; line-height: 1.3; padding: 8px; z-index: 3;
+      box-shadow: 0 4px 20px rgba(201,169,110,0.4);
+    }
+    .section-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 300; line-height: 1.15; color: var(--charcoal); margin-bottom: 8px; }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .section-vi { font-family: 'Noto Serif', serif; font-size: 15px; font-weight: 300; font-style: italic; color: var(--gold-dark); margin-bottom: 28px; }
+    .section-body { font-size: 15px; font-weight: 300; line-height: 1.9; color: #6b5a52; margin-bottom: 20px; }
+    .story-signature { margin-top: 32px; font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; color: var(--rose); }
+
+    /* SERVICES (Updated to 2 columns) */
+    .services { background: var(--cream); padding: 100px 80px; }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-grid { 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 32px; 
+        max-width: 1000px; 
+        margin: 0 auto;
+    }
+    .service-card { background: var(--warm-white); padding: 48px 36px; position: relative; overflow: hidden; transition: transform 0.3s; }
+    .service-card:hover { transform: translateY(-6px); }
+    .service-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--gold-light), var(--gold));
+      transform: scaleX(0); transition: transform 0.4s;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 32px; margin-bottom: 20px; }
+    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--charcoal); margin-bottom: 4px; }
+    .service-name-vi { font-family: 'Noto Serif', serif; font-size: 13px; font-style: italic; color: var(--gold-dark); margin-bottom: 16px; }
+    .service-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: #7a6860; }
+    .service-from { margin-top: 24px; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--gold-dark); }
+    .service-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--rose); }
+
+    /* GALLERY */
+    .gallery { padding: 100px 80px; }
+    .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 6px;
+    }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item:nth-child(1) { grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--blush), var(--gold-light));
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--gold-dark);
+    }
+    .gallery-ph-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; }
+    .gallery-overlay {
+      position: absolute; inset: 0; background: rgba(44,36,32,0);
+      transition: background 0.3s; display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(44,36,32,0.25); }
+    .gallery-overlay span { color: white; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; opacity: 0; transform: translateY(8px); transition: all 0.3s; }
+    .gallery-item:hover .gallery-overlay span { opacity: 1; transform: translateY(0); }
+
+    /* CULTURAL */
+    .cultural { background: var(--charcoal); padding: 100px 80px; color: var(--cream); }
+    .cultural .section-tag { color: var(--gold-light); }
+    .cultural .section-title { color: var(--cream); }
+    .cultural .section-vi { color: var(--gold-light); }
+    .cultural .section-body { color: rgba(253,246,238,0.7); }
+    .cultural-features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    .cultural-feat { border-top: 1px solid rgba(201,169,110,0.3); padding-top: 20px; }
+    .cultural-feat-icon { font-size: 24px; margin-bottom: 10px; }
+    .cultural-feat-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: var(--gold-light); margin-bottom: 6px; }
+    .cultural-feat-vi { font-family: 'Noto Serif', serif; font-size: 12px; font-style: italic; color: var(--gold); margin-bottom: 8px; }
+    .cultural-feat-desc { font-size: 13px; font-weight: 300; color: rgba(253,246,238,0.6); line-height: 1.7; }
+    .cultural-visual { position: relative; height: 500px; }
+    .cultural-img-frame { position: absolute; top: 0; right: 0; width: 85%; height: 75%; background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3); }
+    .cultural-img-frame-inner { position: absolute; bottom: -30px; left: -30px; width: 65%; height: 55%; background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; }
+    .ao-dai-label { font-family: 'Noto Serif', serif; font-style: italic; font-size: 14px; color: var(--gold-light); text-align: center; line-height: 1.6; padding: 0 20px; }
+
+    /* TESTIMONIALS */
+    .testimonials { padding: 100px 80px; background: var(--cream); }
+    .testimonials-header { text-align: center; margin-bottom: 64px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .testimonial-card { background: var(--warm-white); padding: 40px 32px; }
+    .testimonial-quote { font-family: 'Cormorant Garamond', serif; font-size: 72px; line-height: 0.5; color: var(--gold-light); margin-bottom: 20px; }
+    .testimonial-text { font-size: 14px; font-weight: 300; line-height: 1.9; color: #6b5a52; font-style: italic; margin-bottom: 24px; }
+    .testimonial-author { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--charcoal); }
+    .testimonial-detail { font-size: 12px; color: var(--gold-dark); letter-spacing: 0.08em; }
+
+    /* CONTACT */
+    .contact { padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); }
+    .form-label-vi { font-family: 'Noto Serif', serif; font-size: 11px; font-style: italic; color: var(--gold-dark); margin-left: 8px; }
+    .form-input, .form-select, .form-textarea { padding: 14px 16px; background: var(--cream); border: 1px solid rgba(201,169,110,0.3); color: var(--charcoal); font-family: 'Quicksand', sans-serif; font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.3s; width: 100%; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit { padding: 18px; background: var(--charcoal); color: var(--cream); font-family: 'Quicksand', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s; }
+    .form-submit:hover { background: var(--gold-dark); }
+    .contact-info { padding-top: 16px; }
+    .contact-detail { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(201,169,110,0.2); }
+    .contact-detail:last-child { border-bottom: none; }
+    .contact-detail-icon { font-size: 24px; min-width: 36px; }
+    .contact-detail-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--charcoal); margin-bottom: 4px; }
+    .contact-detail-vi { font-family: 'Noto Serif', serif; font-size: 12px; font-style: italic; color: var(--gold-dark); margin-bottom: 6px; }
+    .contact-detail-text { font-size: 14px; font-weight: 300; color: #7a6860; line-height: 1.7; }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); padding: 60px 80px 40px; color: rgba(253,246,238,0.6); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(201,169,110,0.2); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.15em; color: var(--cream); }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline { font-family: 'Noto Serif', serif; font-size: 13px; font-style: italic; color: var(--gold-light); margin-top: 4px; }
+    .footer-social { display: flex; gap: 16px; }
+    .social-link { width: 40px; height: 40px; border: 1px solid rgba(201,169,110,0.3); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; transition: all 0.3s; }
+    .social-link:hover { border-color: var(--gold); background: rgba(201,169,110,0.1); }
+    .footer-bottom { display: flex; justify-content: space-between; font-size: 12px; font-weight: 300; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 400px; position: relative; }
+      .hero-left { padding: 60px 32px; }
+      .story, .contact, .cultural { grid-template-columns: 1fr; gap: 48px; }
+      .story-images { height: 360px; }
+      .cultural-visual { display: none; }
+      .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-column: span 2; height: 300px; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .story, .services, .gallery, .cultural, .testimonials, .contact, footer { padding-left: 24px; padding-right: 24px; }
+    }
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    /* Hero animates on load */
+    .hero-left { animation: fadeUp 0.9s ease both; }
+    .hero-right { animation: fadeIn 1.1s ease 0.2s both; }
+    /* Scroll reveal — starts hidden, JS adds .visible */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-vi" onclick="setLang('vi')">VI</button>
+  </div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">H<span>&</span>H <span style="font-size:20px;letter-spacing:0.08em">Weddings</span></a>
+  <ul class="nav-links">
+    <li><a href="#story"><span class="en-inline">Our Story</span><span class="vi-inline">Câu Chuyện</span></a></li>
+    <li><a href="#services"><span class="en-inline">Services</span><span class="vi-inline">Dịch Vụ</span></a></li>
+    <li><a href="#gallery"><span class="en-inline">Gallery</span><span class="vi-inline">Thư Viện</span></a></li>
+    <li><a href="#contact"><span class="en-inline">Contact</span><span class="vi-inline">Liên Hệ</span></a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    <span class="en-inline">Begin Your Journey</span>
+    <span class="vi-inline">Bắt Đầu</span>
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">
+      <span class="en-inline">Vietnamese &amp; English Wedding Specialists</span>
+      <span class="vi-inline">Chuyên Gia Đám Cưới Việt &amp; Anh</span>
+    </p>
+    <h1 class="hero-title">
+      <span class="en-text">Where Two<br><em>Cultures</em><br>Become One</span>
+      <span class="vi-text">Nơi Hai<br><em>Nền Văn Hóa</em><br>Hòa Làm Một</span>
+    </h1>
+    <p class="hero-subtitle-vi">
+      <span class="en-inline">Hai văn hóa, một tình yêu</span>
+      <span class="vi-inline">Two cultures, one love</span>
+    </p>
+    <p class="hero-desc">
+      <span class="en-text">We specialise in bespoke floral artistry and seamless day-of coordination for weddings that honour both Vietnamese tradition and modern elegance.</span>
+      <span class="vi-text">Chúng tôi chuyên về nghệ thuật cắm hoa theo yêu cầu và điều phối ngày cưới chuyên nghiệp, tôn vinh truyền thống Việt Nam và vẻ đẹp hiện đại.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary"><span class="en-inline">Book a Consultation</span><span class="vi-inline">Đặt Lịch Tư Vấn</span></a>
+      <a href="#gallery" class="btn-secondary"><span class="en-inline">View Gallery</span><span class="vi-inline">Xem Thư Viện</span></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-collage">
+      <div class="hero-collage-item">
+        <img src="Slot1-DramaticVerticalHero.JPG" alt="Wedding portrait">
+      </div>
+      <div class="hero-collage-item">
+        <img src="Slot2-HeroDetailShot.JPG" alt="Floral detail">
+      </div>
+      <div class="hero-collage-item">
+        <img src="Slot3-HeroReception.JPG" alt="Reception styling">
+      </div>
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-overlay-stat">100%</div>
+      <div class="hero-overlay-label">
+        <span class="en-inline">Bilingual ceremonies</span>
+        <span class="vi-inline">Lễ cưới song ngữ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div>✦<div class="divider-line"></div></div>
+
+<section class="story" id="story">
+  <div class="story-images reveal">
+    <div class="story-img-main">
+      <div class="photo-ph"><img src="Slot4-StoryPortrait.JPG" style="width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div class="story-img-accent">
+      <div class="photo-ph"><img src="Slot5-StoryLandscape.JPG" style="width:100%;height:100%;object-fit:cover"></div>
+    </div>
+    <div class="story-badge"><span style="font-size:18px">H&amp;H</span><span>Est.<br>2025</span></div>
+  </div>
+  <div class="reveal" style="transition-delay:0.15s">
+    <p class="section-tag"><span class="en-inline">Our Story</span><span class="vi-inline">Câu Chuyện Của Chúng Tôi</span></p>
+    <h2 class="section-title">
+      <span class="en-text">Born from our own<br><em>wedding day</em></span>
+      <span class="vi-text">Ra đời từ ngày<br><em>đám cưới của chúng tôi</em></span>
+    </h2>
+    <p class="section-vi"><span class="en-inline">Được sinh ra từ tình yêu thực sự</span><span class="vi-inline">Born from true love</span></p>
+    <p class="section-body">
+      <span class="en-text">When we planned our own Vietnamese and English wedding, we realized how much the details mattered — from the way the flowers framed the tea ceremony to the smooth flow of a bilingual schedule. </span>
+      <span class="vi-text">Khi chúng tôi lên kế hoạch cho đám cưới Việt - Anh của mình, chúng tôi nhận ra các chi tiết quan trọng như thế nào — từ cách những bông hoa trang trí lễ rót trà cho đến sự trôi chảy của một lịch trình song ngữ.</span>
+    </p>
+    <p class="section-body">
+      <span class="en-text">We are here to ensure your aesthetic is breathtaking and your wedding day is stress-free, so you can focus on what matters: your love and your family.</span>
+      <span class="vi-text">Chúng tôi ở đây để đảm bảo thẩm mỹ của bạn thật ngoạn mục và ngày cưới của bạn không còn căng thẳng, để bạn có thể tập trung vào điều quan trọng: tình yêu và gia đình bạn.</span>
+    </p>
+    <div class="story-signature">H &amp; H</div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION (Updated to 2 services) -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <p class="section-tag"><span class="en-inline">What We Offer</span><span class="vi-inline">Dịch Vụ Của Chúng Tôi</span></p>
+    <h2 class="section-title"><span class="en-text">Floral & <em>Coordination</em></span><span class="vi-text">Hoa & <em>Điều Phối</em></span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🌸</div>
+      <h3 class="service-name"><span class="en-inline">Floral Design</span><span class="vi-inline">Cắm Hoa Nghệ Thuật</span></h3>
+      <p class="service-name-vi"><span class="en-inline">Nghệ thuật hoa tươi</span><span class="vi-inline">Bespoke Floristry</span></p>
+      <p class="service-desc"><span class="en-text">Custom floral arrangements that blend modern Western trends with traditional Vietnamese elements. From bridal bouquets to grand venue installations and tea ceremony décor.</span><span class="vi-text">Thiết kế hoa theo yêu cầu, kết hợp giữa xu hướng phương Tây hiện đại với các yếu tố truyền thống Việt Nam. Từ bó hoa cầm tay đến trang trí lễ rót trà.</span></p>
+      <div class="service-from"><span class="en-inline">Enquire for</span><span class="vi-inline">Yêu cầu báo giá</span></div>
+      <div class="service-price">Custom Pricing</div>
+    </div>
+    
+    <div class="service-card reveal" style="transition-delay:0.2s">
+      <div class="service-icon">📋</div>
+      <h3 class="service-name"><span class="en-inline">Day-Of Coordination</span><span class="vi-inline">Điều Phối Ngày Cưới</span></h3>
+      <p class="service-name-vi"><span class="en-inline">Điều phối trong ngày</span><span class="vi-inline">On-the-day Management</span></p>
+      <p class="service-desc"><span class="en-text">You've planned the pieces — let us handle the execution. We manage all vendors, guide both families through cultural rituals, and ensure the bilingual timeline runs perfectly.</span><span class="vi-text">Bạn đã lên kế hoạch — hãy để chúng tôi thực hiện. Chúng tôi quản lý mọi nhà cung cấp, hướng dẫn gia đình qua các nghi lễ và đảm bảo lịch trình song ngữ diễn ra hoàn hảo.</span></p>
+      <div class="service-from"><span class="en-inline">Enquire for</span><span class="vi-inline">Yêu cầu báo giá</span></div>
+      <div class="service-price">Custom Pricing</div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <div>
+      <p class="section-tag"><span class="en-inline">Our Portfolio</span><span class="vi-inline">Thư Viện Ảnh</span></p>
+      <h2 class="section-title"><span class="en-text">Moments we've <em>treasured</em></span><span class="vi-text">Những khoảnh khắc <em>trân trọng</em></span></h2>
+    </div>
+    <a href="#contact" class="btn-secondary"><span class="en-inline">View Full Gallery</span><span class="vi-inline">Xem Tất Cả</span></a>
+  </div>
+  <div class="gallery-grid reveal" style="transition-delay:0.1s">
+    <div class="gallery-item">
+      <img src="Slot6-GalleryLandscape.JPG" alt="Floral Installation">
+      <div class="gallery-overlay"><span><span class="en-inline">Floral Artistry</span><span class="vi-inline">Nghệ thuật hoa</span></span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="Slot7-GalleryTeaPortrait.JPG" alt="Tea ceremony">
+      <div class="gallery-overlay"><span><span class="en-inline">Tea ceremony</span><span class="vi-inline">Lễ rót trà</span></span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="Slot10-GalleryAoDaiPortrait.JPG" alt="Áo dài">
+      <div class="gallery-overlay"><span><span class="en-inline">Áo dài</span><span class="vi-inline">Áo dài</span></span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="Slot8-GalleryFlowersPortrait.JPG" alt="Wedding bouquet">
+      <div class="gallery-overlay"><span><span class="en-inline">Florals</span><span class="vi-inline">Hoa cưới</span></span></div>
+    </div>
+    <div class="gallery-item">
+      <img src="Slot9-GalleryTeaLandscape.JPG" alt="Coordination">
+      <div class="gallery-overlay"><span><span class="en-inline">Perfectly Managed</span><span class="vi-inline">Điều phối chuyên nghiệp</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cultural" id="cultural">
+  <div class="reveal">
+    <p class="section-tag"><span class="en-inline">Our Speciality</span><span class="vi-inline">Đặc Trưng Của Chúng Tôi</span></p>
+    <h2 class="section-title"><span class="en-text">Bridging the<br><em>gap</em></span><span class="vi-text">Kết nối hai<br><em>thế giới</em></span></h2>
+    <p class="section-vi"><span class="en-inline">Truyền thống và hiện đại hoà quyện</span><span class="vi-inline">Tradition and modernity in harmony</span></p>
+    <p class="section-body">
+      <span class="en-text">We bridge the gap between cultural expectations and modern aesthetics. Whether it's sourcing specific traditional flowers or explaining a tea ceremony ritual to English-speaking guests, we ensure every guest feels included.</span>
+      <span class="vi-text">Chúng tôi kết nối giữa mong đợi về văn hóa và thẩm mỹ hiện đại. Dù là tìm nguồn cung cấp hoa truyền thống hay giải thích nghi lễ rót trà cho khách nói tiếng Anh, chúng tôi đảm bảo mọi vị khách đều cảm thấy được chào đón.</span>
+    </p>
+    <div class="cultural-features">
+      <div class="cultural-feat">
+        <div class="cultural-feat-icon">🏮</div>
+        <div class="cultural-feat-title"><span class="en-inline">Ritual Décor</span><span class="vi-inline">Trang Trí Nghi Lễ</span></div>
+        <div class="cultural-feat-vi"><span class="en-inline">Lễ Rót Trà</span><span class="vi-inline">Tea Ceremony</span></div>
+        <p class="cultural-feat-desc"><span class="en-text">Bilingual guidance and traditional floral styling</span><span class="vi-text">Hướng dẫn song ngữ và phong cách hoa truyền thống</span></p>
+      </div>
+      <div class="cultural-feat">
+        <div class="cultural-feat-icon">🎙️</div>
+        <div class="cultural-feat-title"><span class="en-inline">Bilingual Flow</span><span class="vi-inline">Luồng Xử Lý Song Ngữ</span></div>
+        <div class="cultural-feat-vi"><span class="en-inline">Lễ cưới song ngữ</span><span class="vi-inline">Bilingual Ceremony</span></div>
+        <p class="cultural-feat-desc"><span class="en-text">Ensuring the schedule makes sense to both Vietnamese and English speakers</span><span class="vi-text">Đảm bảo lịch trình dễ hiểu cho cả người nói tiếng Việt và tiếng Anh</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="testimonials-header reveal">
+    <p class="section-tag"><span class="en-inline">Kind Words</span><span class="vi-inline">Lời Chia Sẻ</span></p>
+    <h2 class="section-title"><span class="en-text">What our couples <em>said</em></span><span class="vi-text">Điều các cặp đôi <em>nói</em></span></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">
+        <span class="en-text">The flowers were more beautiful than I ever imagined, and having H&H manage the day-of meant our parents could actually enjoy the ceremony instead of worrying about logistics.</span>
+        <span class="vi-text">Những bông hoa đẹp hơn cả những gì tôi tưởng tượng, và việc có H&H quản lý trong ngày đồng nghĩa với việc cha mẹ chúng tôi thực sự có thể tận hưởng buổi lễ.</span>
+      </p>
+      <div class="testimonial-author">Giang &amp; CJ</div>
+      <div class="testimonial-detail"><span class="en-inline">Wedding Couple, 2025</span><span class="vi-inline">Cặp đôi đám cưới, 2025</span></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">
+        <span class="en-text">The coordination was seamless. They understood exactly how to balance our Vietnamese rituals with our English-speaking guest list.</span>
+        <span class="vi-text">Sự điều phối thật hoàn hảo. Họ hiểu chính xác cách cân bằng các nghi lễ Việt Nam với danh sách khách mời nói tiếng Anh của chúng tôi.</span>
+      </p>
+      <div class="testimonial-author">Linh &amp; Jason</div>
+      <div class="testimonial-detail"><span class="en-inline">Bride, 2024</span><span class="vi-inline">Cô dâu, 2024</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-info reveal">
+    <p class="section-tag"><span class="en-inline">Get In Touch</span><span class="vi-inline">Liên Hệ Với Chúng Tôi</span></p>
+    <h2 class="section-title">
+      <span class="en-text">Let's create something<br><em>beautiful</em></span>
+      <span class="vi-text">Hãy cùng tạo ra điều gì đó<br><em>đẹp đẽ</em></span>
+    </h2>
+    <p class="section-vi"><span class="en-inline">Ngày hoàn hảo của bạn bắt đầu từ đây</span><span class="vi-inline">Your perfect day starts here</span></p>
+    <p class="section-body">
+      <span class="en-text">Fill in the form and we'll be in touch within 48 hours to discuss your floral vision or coordination needs.</span>
+      <span class="vi-text">Điền vào mẫu và chúng tôi sẽ liên hệ trong vòng 48 giờ để thảo luận về tầm nhìn hoa tươi hoặc nhu cầu điều phối của bạn.</span>
+    </p>
+    <div style="margin-top:40px">
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <div>
+          <div class="contact-detail-title"><span class="en-inline">Email Us</span><span class="vi-inline">Email</span></div>
+          <div class="contact-detail-vi"><span class="en-inline">Gửi email cho chúng tôi</span><span class="vi-inline">Send us an email</span></div>
+          <div class="contact-detail-text">hello@hhweddings.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal" style="transition-delay:0.15s">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="en-inline">Your name</span><span class="vi-inline">Họ và tên</span></label>
+        <input type="text" class="form-input" placeholder="e.g. Christian & Julia">
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="en-inline">Email address</span><span class="vi-inline">Địa chỉ email</span></label>
+        <input type="email" class="form-input" placeholder="your@email.com">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label"><span class="en-inline">Wedding date</span><span class="vi-inline">Ngày cưới</span></label>
+        <input type="date" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label"><span class="en-inline">Service interest</span><span class="vi-inline">Dịch vụ quan tâm</span></label>
+        <select class="form-select">
+          <option>Floral Design / Cắm Hoa Nghệ Thuật</option>
+          <option>Day-Of Coordination / Điều Phối Ngày Cưới</option>
+          <option>Both Services / Cả Hai Dịch Vụ</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><span class="en-inline">Tell us about your wedding</span><span class="vi-inline">Kể cho chúng tôi nghe về đám cưới của bạn</span></label>
+      <textarea class="form-textarea" placeholder="Venue, guest count, and your floral or coordination needs..."></textarea>
+    </div>
+    <button class="form-submit" onclick="handleSubmit(this)">
+      <span class="en-inline">Send Your Enquiry ✦</span>
+      <span class="vi-inline">Gửi Yêu Cầu ✦</span>
+    </button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">H<span>&</span>H <span style="font-size:24px;letter-spacing:0.08em">Weddings</span></div>
+      <div class="footer-tagline">
+        <span class="en-inline">Floral Design · Coordination · Your perfect day</span>
+        <span class="vi-inline">Thiết kế hoa · Điều phối · Ngày hoàn hảo của bạn</span>
+      </div>
+    </div>
+    <div class="footer-social">
+      <a href="#" class="social-link" title="Instagram">📷</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 H&amp;H Weddings.</span>
+    <span><span class="en-inline">Made with love, for love.</span><span class="vi-inline">Được tạo ra với tình yêu, vì tình yêu.</span></span>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    if (lang === 'vi') {
+      document.body.classList.add('vi');
+      document.getElementById('btn-vi').classList.add('active');
+      document.getElementById('btn-en').classList.remove('active');
+    } else {
+      document.body.classList.remove('vi');
+      document.getElementById('btn-en').classList.add('active');
+      document.getElementById('btn-vi').classList.remove('active');
+    }
+  }
+
+  function handleSubmit(btn) {
+    var isVi = document.body.classList.contains('vi');
+    btn.textContent = isVi ? 'Đã gửi! Chúng tôi sẽ liên hệ sớm ✦' : "Enquiry sent! We'll be in touch soon ✦";
+    btn.style.background = '#9a7a3f';
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+</script>
+</body>
+</html>
